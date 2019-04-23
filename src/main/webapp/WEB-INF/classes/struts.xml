@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 指定文档类型，此版本为struts-2.5-->
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+    <!-- 包名：自定义，主要用于模块化；extends:指定package继承另一package的所有配置，通常选择struts-default作为基础 -->
+    <package name="BasicStruts" extends="struts-default">
+        <!-- 指定action名称、所在路径、方法-->
+        <action name="research" class="action.ResearchAction" method="execute">
+            <result name="success">/content.jsp</result>
+            <result name="error">/index.jsp</result>
+        </action>
+    </package>
+</struts>
