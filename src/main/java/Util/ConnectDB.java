@@ -20,12 +20,6 @@ public class ConnectDB {
     private Driver CreateDriver() {
         return GraphDatabase.driver("bolt://localhost:7687", AuthTokens.basic("neo4j", "19961228."));
     }
-
-    //获取一个driver对象
-    public Driver GetDriver() {
-        return CreateDriver();
-    }
-
     /*
      *连接数据库测试*/
     public void test() {
@@ -185,22 +179,14 @@ public class ConnectDB {
         CommUtils.printDataJason(response, restfulResult);
     }
 */
-
-    public void SearchExpertName(String ExpertName) {
-        try {
-            Driver driver = CreateDriver();
-            Session session = driver.session();
-
-            StatementResult result = session.run("MATCH (n:expert) where n.name=\'" + ExpertName +
-                    "\' RETURN n.name AS name,n.title AS title");
-            List<String> resultList = new ArrayList<String>();
-            while (result.hasNext()) {
-                Record record = result.next();
-                resultList.add(record.get("name").toString() + " " + record.get("title").toString());
-            }
-            session.close();
-            driver.close();
-        } catch (Exception e) {
-        }
+    //查询
+    public StatementResult CreateSearch(String sql) {
+        StatementResult result;
+        Driver driver = CreateDriver();
+        Session session = driver.session();
+        result = session.run(sql);
+        session.close();
+        driver.close();
+        return result;
     }
 }

@@ -4,10 +4,8 @@ package action;
 import Util.ConnectDB;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
-import org.neo4j.driver.v1.Driver;
-import org.neo4j.driver.v1.Session;
 import org.neo4j.driver.v1.StatementResult;
-import Object.ResearchBean;
+
 
 import java.util.Map;
 
@@ -20,7 +18,7 @@ public class ResearchAction extends ActionSupport {
     private String keyword;
     private Map session;
     public String mess="";
-    public String execute() throws Exception {
+    public String execute(){
         String Status="error";
         if(expert_name.isEmpty()&&publication_title.isEmpty()&&keyword.isEmpty())
         {
@@ -45,9 +43,7 @@ public class ResearchAction extends ActionSupport {
                // sql="MATCH ()"
             }
             ConnectDB con =new ConnectDB();
-            Driver driver = con.GetDriver();
-            Session sess = driver.session();
-            StatementResult result = sess.run(sql);
+            StatementResult result = con.CreateSearch(sql);
             if(result.hasNext())
             {
                 session = (Map)ActionContext.getContext().getSession();
@@ -58,8 +54,6 @@ public class ResearchAction extends ActionSupport {
             {
                 mess="搜索结果不存在！";
             }
-            sess.close();//关闭数据库
-            driver.close();
         }
         return Status;
     }

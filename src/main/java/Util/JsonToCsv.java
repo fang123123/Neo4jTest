@@ -28,7 +28,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class JsonToExcel {
+public class JsonToCsv {
 
     public static void writeKnowledgeCSV(List<Knowledge> knowledgeList) {
         try {

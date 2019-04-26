@@ -20,29 +20,32 @@
   </properties>
 
   <dependencies>
+    <!-- junit单元测试-->
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
       <version>4.11</version>
       <scope>test</scope>
     </dependency>
-    <!-- 添加neo4j-->
+    <!-- 添加neo4j driver驱动-->
     <dependency>
       <groupId>org.neo4j.driver</groupId>
       <artifactId>neo4j-java-driver</artifactId>
       <version>1.1.2</version>
     </dependency>
-    <!-- 将fastjson.jar放入本地仓库并导入-->
+    <!-- https://mvnrepository.com/artifact/com.alibaba/fastjson -->
     <dependency>
-      <groupId>com.fastjson</groupId>
+      <groupId>com.alibaba</groupId>
       <artifactId>fastjson</artifactId>
       <version>1.2.9</version>
     </dependency>
+
     <dependency>
       <groupId>org.apache.poi</groupId>
       <artifactId>poi</artifactId>
       <version>3.14</version>
     </dependency>
+    <!--用于java操作exl-->
     <dependency>
       <groupId>net.sourceforge.jexcelapi</groupId>
       <artifactId>jxl</artifactId>
@@ -87,7 +90,18 @@
       <artifactId>log4j-api</artifactId>
       <version>2.11.2</version>
     </dependency>
-
+    <!-- 面向生产环境的自然语言处理工具包-->
+    <dependency>
+      <groupId>com.hankcs</groupId>
+      <artifactId>hanlp</artifactId>
+      <version>portable-1.7.3</version>
+    </dependency>
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-api</artifactId>
+      <version>RELEASE</version>
+      <scope>compile</scope>
+    </dependency>
 
   </dependencies>
 
@@ -135,38 +149,9 @@
             <contextFile>src/main/webapp/META-INF/context.xml</contextFile>
           </configuration>
         </plugin>
-        <plugin>
-          <groupId>org.apache.tomcat.maven</groupId>
-          <artifactId>tomcat8-maven-plugin</artifactId>
-          <version>3.0-r1655215</version>
-          <configuration>
-            <port>8080</port>
-            <path>/</path>
-            <contextFile>src/main/webapp/META-INF/context.xml</contextFile>
-          </configuration>
-        </plugin>
 
       </plugins>
 
     </pluginManagement>
-
   </build>
-  <pluginRepositories>
-    <pluginRepository>
-      <id>alfresco-public</id>
-      <url>https://artifacts.alfresco.com/nexus/content/groups/public</url>
-    </pluginRepository>
-    <pluginRepository>
-      <id>alfresco-public-snapshots</id>
-      <url>https://artifacts.alfresco.com/nexus/content/groups/public-snapshots</url>
-      <snapshots>
-        <enabled>true</enabled>
-        <updatePolicy>daily</updatePolicy>
-      </snapshots>
-    </pluginRepository>
-    <pluginRepository>
-      <id>beardedgeeks-releases</id>
-      <url>http://beardedgeeks.googlecode.com/svn/repository/releases</url>
-    </pluginRepository>
-  </pluginRepositories>
 </project>
